@@ -2,7 +2,7 @@
 
 require 'rails'
 require 'bundler/setup'
-require 'acts_as_template'
+require 'acts_as_scope'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

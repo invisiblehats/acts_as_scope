@@ -12,7 +12,7 @@ require 'rdoc/task'
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'ActsAsTemplate'
+  rdoc.title    = 'ActsAsScope'
   rdoc.options << '--line-numbers'
   rdoc.rdoc_files.include('README.md')
   rdoc.rdoc_files.include('lib/**/*.rb')
@@ -29,18 +29,18 @@ Rake::TestTask.new(:test) do |t|
 end
 
 # require 'rails'
-# require "acts_as_template"
+# require "acts_as_scope"
 require 'github_changelog_generator/task'
 
-namespace :acts_as_template do
+namespace :acts_as_scope do
   namespace :changelog do
     desc 'Create a new changelog based on the current version'
     GitHubChangelogGenerator::RakeTask.new :generate do |config|
-      user, project = ActsAsTemplate::REPO.split('/')
+      user, project = ActsAsScope::REPO.split('/')
 
       config.user = user
       config.project = project
-      config.future_release = "v#{ActsAsTemplate::VERSION}"
+      config.future_release = "v#{ActsAsScope::VERSION}"
       config.token = ENV['CHANGELOG_TOKEN'] || ENV['GITHUB_TOKEN']
     end
   end

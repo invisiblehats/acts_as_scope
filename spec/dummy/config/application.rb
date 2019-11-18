@@ -5,7 +5,7 @@ require_relative 'boot'
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require 'acts_as_template'
+require 'acts_as_scope'
 
 module Dummy
   class Application < Rails::Application

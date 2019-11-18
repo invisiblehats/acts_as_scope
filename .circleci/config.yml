@@ -38,7 +38,7 @@ commands:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
 
 executors:
-  acts_as_template-config:
+  acts_as_scope-config:
     docker:
       - image: circleci/ruby:2.6.3-node-browsers
         environment:
@@ -48,18 +48,18 @@ executors:
           RACK_ENV: test
       - image: circleci/postgres:9.6
         environment:
-          POSTGRES_DB: acts_as_template_test
+          POSTGRES_DB: acts_as_scope_test
           POSTGRES_USER: root
     working_directory: ~/project
 
 jobs:
   setup:
-    executor: acts_as_template-config
+    executor: acts_as_scope-config
     steps:
       - install_dependencies
 
   rspec:
-    executor: acts_as_template-config
+    executor: acts_as_scope-config
     steps:
       - install_dependencies
       - run:
@@ -84,7 +84,7 @@ jobs:
 
 workflows:
   version: 2.1
-  acts_as_template:
+  acts_as_scope:
     jobs:
       - setup
       - rspec:
